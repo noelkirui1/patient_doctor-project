@@ -90,6 +90,8 @@ const PatientScheduleAppointment = () => {
     const { addAppointment } = useContext(AppointmentsContext);
     const [formData, setFormData] = useState({
         patientName: '',
+        dateOfBirth: '',
+        age: '',
         date: '',
         time: '',
         gender: '',
@@ -108,6 +110,8 @@ const PatientScheduleAppointment = () => {
         alert('Appointment scheduled successfully!');
         setFormData({
             patientName: '',
+            dateOfBirth: '',
+            age: '',
             date: '',
             time: '',
             gender: '',
@@ -122,6 +126,8 @@ const PatientScheduleAppointment = () => {
                 <h2>Schedule Appointment</h2>
                 <form onSubmit={handleSubmit}>
                     <input type="text" name="patientName" placeholder="Patient Name" value={formData.patientName} onChange={handleChange} required />
+                    <input type="date" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleChange} required />
+                    <input type="number" name="age" placeholder="Age" value={formData.age} onChange={handleChange} required />
                     <input type="date" name="date" value={formData.date} onChange={handleChange} required />
                     <input type="time" name="time" value={formData.time} onChange={handleChange} required />
                     <select name="gender" value={formData.gender} onChange={handleChange} required>
