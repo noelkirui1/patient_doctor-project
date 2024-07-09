@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import '../styles/PatientRegistration.css'; // Ensure correct path to your CSS file for registration
-import '../styles/PatientLogin.css'; // Ensure correct path to your CSS file for login
+import '../styles/PatientRegistration.css'; 
+import '../styles/PatientLogin.css'; 
 
 const PatientRegistration = () => {
     const [formData, setFormData] = useState({
@@ -20,8 +20,7 @@ const PatientRegistration = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Patient Registration Data:', formData);
-        // Replace with actual registration logic (e.g., API call)
-        alert('Patient registration successful!'); // Alert message for success
+        alert('Patient registration successful!'); 
         setFormData({
             firstName: '',
             lastName: '',
@@ -64,8 +63,7 @@ const PatientLogin = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Patient Login Data:', loginData);
-        // Replace with actual login logic (e.g., API call)
-        alert('Patient login successful!'); // Alert message for success
+        alert('Patient login successful!');
         setLoginData({
             phone: '',
             password: ''

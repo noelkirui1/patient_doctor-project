@@ -1,11 +1,9 @@
-/* PatientRegistration.css */
-
 .form-container {
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    height: 100vh; /* Adjust height as needed */
-    background-color: #f0f0f0; /* Change background color */
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+    background-color: #f0f0f0; 
   }
   
   .card {
@@ -33,7 +31,7 @@
   .card form button {
     width: 100%;
     padding: 10px;
-    background-color: #28a745; /* Green color */
+    background-color: #28a745; 
     color: white;
     border: none;
     border-radius: 4px;
@@ -41,6 +39,6 @@
   }
   
   .card form button:hover {
-    background-color: #218838; /* Darker shade of green on hover */
+    background-color: #218838; 
   }
   
