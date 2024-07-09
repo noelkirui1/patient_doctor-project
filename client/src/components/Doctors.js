@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
-import '../styles/DoctorRegistration.css'; // Ensure correct path to your CSS file for registration
-import '../styles/DoctorLogin.css'; // Ensure correct path to your CSS file for login
+// src/components/Doctors.js
+import React, { useState, useContext } from 'react';
+import '../styles/DoctorRegistration.css'; 
+import '../styles/DoctorLogin.css'; 
+import '../styles/Appointments.css';
+import { AppointmentsContext } from '../context/AppointmentsContext';
 
 const DoctorRegistration = () => {
     const [formData, setFormData] = useState({
@@ -22,8 +25,7 @@ const DoctorRegistration = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Doctor Registration Data:', formData);
-        // Replace with actual registration logic (e.g., API call)
-        alert('Doctor registration successful!'); // Alert message for success
+        alert('Doctor registration successful!'); 
         setFormData({
             firstName: '',
             lastName: '',
@@ -70,8 +72,7 @@ const DoctorLogin = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Doctor Login Data:', loginData);
-        // Replace with actual login logic (e.g., API call)
-        alert('Doctor login successful!'); // Alert message for success
+        alert('Doctor login successful!'); 
         setLoginData({
             phone: '',
             password: ''
@@ -92,4 +93,39 @@ const DoctorLogin = () => {
     );
 };
 
-export { DoctorRegistration, DoctorLogin };
+const DoctorManageAppointments = () => {
+    const { appointments, approveAppointment, deleteAppointment } = useContext(AppointmentsContext);
+
+    return (
+        <div className="appointments-container">
+            <h2>Manage Appointments</h2>
+            {appointments.length === 0 ? (
+                <p>No appointments available</p>
+            ) : (
+                <ul>
+                    {appointments.map((appointment) => (
+                        <li key={appointment.id} className="appointment-card">
+                            <div className="appointment-details">
+                                <p>Patient: {appointment.patientName}</p>
+                                <p>Gender: {appointment.gender}</p>
+                                <p>Date: {appointment.date}</p>
+                                <p>Time: {appointment.time}</p>
+                                <p>Doctor: {appointment.doctor}</p>
+                                <p>Speciality: {appointment.speciality}</p>
+                                <p>Status: {appointment.status}</p>
+                            </div>
+                            <div className="appointment-buttons">
+                                {appointment.status === 'pending' && (
+                                    <button onClick={() => approveAppointment(appointment.id)}>Approve</button>
+                                )}
+                                <button onClick={() => deleteAppointment(appointment.id)}>Delete</button>
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </div>
+    );
+};
+
+export { DoctorRegistration, DoctorLogin, DoctorManageAppointments };

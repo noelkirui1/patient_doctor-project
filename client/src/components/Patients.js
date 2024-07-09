@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import '../styles/PatientRegistration.css'; // Ensure correct path to your CSS file for registration
-import '../styles/PatientLogin.css'; // Ensure correct path to your CSS file for login
+// src/components/Patients.js
+import React, { useState, useContext } from 'react';
+import '../styles/PatientRegistration.css';
+import '../styles/PatientLogin.css';
+import { AppointmentsContext } from '../context/AppointmentsContext';
 
 const PatientRegistration = () => {
     const [formData, setFormData] = useState({
@@ -20,8 +22,7 @@ const PatientRegistration = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Patient Registration Data:', formData);
-        // Replace with actual registration logic (e.g., API call)
-        alert('Patient registration successful!'); // Alert message for success
+        alert('Patient registration successful!');
         setFormData({
             firstName: '',
             lastName: '',
@@ -64,8 +65,7 @@ const PatientLogin = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Patient Login Data:', loginData);
-        // Replace with actual login logic (e.g., API call)
-        alert('Patient login successful!'); // Alert message for success
+        alert('Patient login successful!');
         setLoginData({
             phone: '',
             password: ''
@@ -86,4 +86,57 @@ const PatientLogin = () => {
     );
 };
 
-export { PatientRegistration, PatientLogin };
+const PatientScheduleAppointment = () => {
+    const { addAppointment } = useContext(AppointmentsContext);
+    const [formData, setFormData] = useState({
+        patientName: '',
+        date: '',
+        time: '',
+        gender: '',
+        doctor: '',
+        speciality: ''
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        addAppointment(formData);
+        alert('Appointment scheduled successfully!');
+        setFormData({
+            patientName: '',
+            date: '',
+            time: '',
+            gender: '',
+            doctor: '',
+            speciality: ''
+        });
+    };
+
+    return (
+        <div className="form-container">
+            <div className="card">
+                <h2>Schedule Appointment</h2>
+                <form onSubmit={handleSubmit}>
+                    <input type="text" name="patientName" placeholder="Patient Name" value={formData.patientName} onChange={handleChange} required />
+                    <input type="date" name="date" value={formData.date} onChange={handleChange} required />
+                    <input type="time" name="time" value={formData.time} onChange={handleChange} required />
+                    <select name="gender" value={formData.gender} onChange={handleChange} required>
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <input type="text" name="doctor" placeholder="Doctor" value={formData.doctor} onChange={handleChange} required />
+                    <input type="text" name="speciality" placeholder="Speciality" value={formData.speciality} onChange={handleChange} required />
+                    <button type="submit">Schedule</button>
+                </form>
+            </div>
+        </div>
+    );
+};
+
+export { PatientRegistration, PatientLogin, PatientScheduleAppointment };
