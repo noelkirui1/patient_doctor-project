@@ -19,10 +19,6 @@ with app.app_context():
     patient1 = Patient(name='Alice Johnson', age=29, gender='Female')
     patient2 = Patient(name='Bob Smith', age=45, gender='Male')
 
-    # Add the direct many-to-many relationships
-    doctor1.patients.append(patient1)
-    doctor2.patients.append(patient2)
-
     # Create some appointments
     appointment1 = Appointment(date=datetime(2023, 7, 9, 10, 0), doctor=doctor1, patient=patient1)
     appointment2 = Appointment(date=datetime(2023, 7, 10, 11, 0), doctor=doctor2, patient=patient2)
