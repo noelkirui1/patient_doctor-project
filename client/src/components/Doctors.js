@@ -1,7 +1,7 @@
 // src/components/Doctors.js
 import React, { useState, useContext } from 'react';
-import '../styles/DoctorRegistration.css'; 
-import '../styles/DoctorLogin.css'; 
+import '../styles/DoctorRegistration.css';
+import '../styles/DoctorLogin.css';
 import '../styles/Appointments.css';
 import { AppointmentsContext } from '../context/AppointmentsContext';
 
@@ -25,7 +25,7 @@ const DoctorRegistration = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Doctor Registration Data:', formData);
-        alert('Doctor registration successful!'); 
+        alert('Doctor registration successful!');
         setFormData({
             firstName: '',
             lastName: '',
@@ -72,7 +72,7 @@ const DoctorLogin = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Doctor Login Data:', loginData);
-        alert('Doctor login successful!'); 
+        alert('Doctor login successful!');
         setLoginData({
             phone: '',
             password: ''
