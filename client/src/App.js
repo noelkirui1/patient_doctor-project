@@ -1,13 +1,10 @@
-// src/App.js
+// App.js
+
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-//import { PatientRegistration, PatientLogin, PatientScheduleAppointment } from './components/Patients';
-//import { DoctorRegistration, DoctorLogin, DoctorManageAppointments } from './components/Doctors';
-//import { AppointmentsProvider } from './context/AppointmentsContext';
-import './App.css';
-import NavBar from './components/NavBar';
-import LandingPage from './components/LandingPage';
-import Register from './components/Register';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import DoctorDashboard from './components/Doctors'; // Adjusted import path
+import PatientDashboard from './components/Patients'; // Adjusted import path
+import { AppointmentsProvider } from './components/AppointmentsContext'; // Adjusted import path
 
 const App = () => {
     return (
