@@ -1,148 +1,158 @@
-// src/components/Patients.js
+// Patient.js
+
 import React, { useState, useContext } from 'react';
-import '../styles/PatientRegistration.css';
-import '../styles/PatientLogin.css';
-import { AppointmentsContext } from '../context/AppointmentsContext';
+import AppointmentsContext from './AppointmentsContext';
+import './Patients.css';
 
-const PatientRegistration = () => {
-    const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        dateOfBirth: '',
-        phone: '',
-        password: '',
-        address: ''
-    });
+const PatientLogin = ({ onLogin }) => {
+  const handleLogin = (e) => {
+    e.preventDefault();
+    onLogin();
+  };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Patient Registration Data:', formData);
-        alert('Patient registration successful!');
-        setFormData({
-            firstName: '',
-            lastName: '',
-            dateOfBirth: '',
-            phone: '',
-            password: '',
-            address: ''
-        });
-    };
-
-    return (
-        <div className="form-container">
-            <div className="card">
-                <h2>Patient Registration</h2>
-                <form onSubmit={handleSubmit}>
-                    <input type="text" name="firstName" placeholder="First Name" value={formData.firstName} onChange={handleChange} required />
-                    <input type="text" name="lastName" placeholder="Last Name" value={formData.lastName} onChange={handleChange} required />
-                    <input type="date" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleChange} required />
-                    <input type="tel" name="phone" placeholder="Phone No" value={formData.phone} onChange={handleChange} required />
-                    <input type="password" name="password" placeholder="Login Password" value={formData.password} onChange={handleChange} required minLength="8" />
-                    <input type="text" name="address" placeholder="Address" value={formData.address} onChange={handleChange} required />
-                    <button type="submit">Register</button>
-                </form>
-            </div>
-        </div>
-    );
+  return (
+    <div className="card">
+      <form onSubmit={handleLogin}>
+        <h3>Patient Login</h3>
+        <input type="text" placeholder="Patient ID" required />
+        <input type="password" placeholder="Password" required />
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  );
 };
 
-const PatientLogin = () => {
-    const [loginData, setLoginData] = useState({
-        phone: '',
-        password: ''
-    });
+const PatientRegister = () => {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    dob: '',
+    phone: '',
+    address: '',
+    password: '',
+  });
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setLoginData({ ...loginData, [name]: value });
-    };
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Patient Login Data:', loginData);
-        alert('Patient login successful!');
-        setLoginData({
-            phone: '',
-            password: ''
-        });
-    };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData); // Example: Log form data
+    // Implement registration logic here
+  };
 
-    return (
-        <div className="form-container">
-            <div className="card">
-                <h2>Patient Login</h2>
-                <form onSubmit={handleSubmit}>
-                    <input type="tel" name="phone" placeholder="Phone No" value={loginData.phone} onChange={handleChange} required />
-                    <input type="password" name="password" placeholder="Login Password" value={loginData.password} onChange={handleChange} required minLength="8" />
-                    <button type="submit">Login</button>
-                </form>
-            </div>
-        </div>
-    );
+  return (
+    <form onSubmit={handleSubmit} className="card">
+      <h3>Patient Register</h3>
+      <input name="firstName" placeholder="First Name" onChange={handleChange} required />
+      <input name="lastName" placeholder="Last Name" onChange={handleChange} required />
+      <input name="dob" type="date" onChange={handleChange} required />
+      <input name="phone" placeholder="Phone No" onChange={handleChange} required />
+      <input name="address" placeholder="Address" onChange={handleChange} required />
+      <input name="password" type="password" placeholder="Login Password" onChange={handleChange} required />
+      <button type="submit">Register</button>
+    </form>
+  );
 };
 
-const PatientScheduleAppointment = () => {
-    const { addAppointment } = useContext(AppointmentsContext);
-    const [formData, setFormData] = useState({
-        patientName: '',
-        dateOfBirth: '',
-        age: '',
-        date: '',
-        time: '',
-        gender: '',
-        doctor: '',
-        speciality: ''
-    });
+const PatientProfileUpdate = () => {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    dob: '',
+    phone: '',
+    address: '',
+    password: '',
+  });
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        addAppointment(formData);
-        alert('Appointment scheduled successfully!');
-        setFormData({
-            patientName: '',
-            dateOfBirth: '',
-            age: '',
-            date: '',
-            time: '',
-            gender: '',
-            doctor: '',
-            speciality: ''
-        });
-    };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData); // Example: Log form data
+    // Implement profile update logic here
+  };
 
-    return (
-        <div className="form-container">
-            <div className="card">
-                <h2>Schedule Appointment</h2>
-                <form onSubmit={handleSubmit}>
-                    <input type="text" name="patientName" placeholder="Patient Name" value={formData.patientName} onChange={handleChange} required />
-                    <input type="date" name="dateOfBirth" value={formData.dateOfBirth} onChange={handleChange} required />
-                    <input type="number" name="age" placeholder="Age" value={formData.age} onChange={handleChange} required />
-                    <input type="date" name="date" value={formData.date} onChange={handleChange} required />
-                    <input type="time" name="time" value={formData.time} onChange={handleChange} required />
-                    <select name="gender" value={formData.gender} onChange={handleChange} required>
-                        <option value="">Select Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">Other</option>
-                    </select>
-                    <input type="text" name="doctor" placeholder="Doctor" value={formData.doctor} onChange={handleChange} required />
-                    <input type="text" name="speciality" placeholder="Speciality" value={formData.speciality} onChange={handleChange} required />
-                    <button type="submit">Schedule</button>
-                </form>
-            </div>
-        </div>
-    );
+  return (
+    <form onSubmit={handleSubmit} className="card profile-update">
+      <h3>Patient Profile Update</h3>
+      <input name="firstName" placeholder="First Name" onChange={handleChange} required />
+      <input name="lastName" placeholder="Last Name" onChange={handleChange} required />
+      <input name="dob" type="date" onChange={handleChange} required />
+      <input name="phone" placeholder="Phone No" onChange={handleChange} required />
+      <input name="address" placeholder="Address" onChange={handleChange} required />
+      <input name="password" type="password" placeholder="Login Password" onChange={handleChange} required />
+      <button type="submit">Update Profile</button>
+    </form>
+  );
 };
 
-export { PatientRegistration, PatientLogin, PatientScheduleAppointment };
+const ScheduleAppointment = () => {
+  const { handleAppointmentScheduling } = useContext(AppointmentsContext);
+  const [selectedDoctor, setSelectedDoctor] = useState('');
+  const [appointmentDate, setAppointmentDate] = useState('');
+  const [appointmentTime, setAppointmentTime] = useState('');
+  const [patientAge, setPatientAge] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const appointment = {
+      doctor: selectedDoctor,
+      date: appointmentDate,
+      time: appointmentTime,
+      age: patientAge,
+    };
+    handleAppointmentScheduling(appointment);
+    setSelectedDoctor('');
+    setAppointmentDate('');
+    setAppointmentTime('');
+    setPatientAge('');
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="card">
+      <h3>Schedule Appointment</h3>
+      <select value={selectedDoctor} onChange={(e) => setSelectedDoctor(e.target.value)} required>
+        <option value="">Select Doctor</option>
+        <option value="Dr. John Doe">Dr. John Doe</option>
+        <option value="Dr. Jane Smith">Dr. Jane Smith</option>
+      </select>
+      <input type="date" value={appointmentDate} onChange={(e) => setAppointmentDate(e.target.value)} required />
+      <input type="time" value={appointmentTime} onChange={(e) => setAppointmentTime(e.target.value)} required />
+      <input type="text" placeholder="Age" value={patientAge} onChange={(e) => setPatientAge(e.target.value)} required />
+      <button type="submit">Schedule</button>
+    </form>
+  );
+};
+
+const PatientDashboard = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showRegistration, setShowRegistration] = useState(false);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
+  return (
+    <div className="patient-dashboard">
+      <h2>Patient Dashboard</h2>
+      {!isLoggedIn ? (
+        <>
+          <PatientLogin onLogin={handleLogin} />
+          <button onClick={() => setShowRegistration(!showRegistration)}>Register</button>
+          {showRegistration && <PatientRegister />}
+        </>
+      ) : (
+        <>
+          <PatientProfileUpdate />
+          <ScheduleAppointment />
+        </>
+      )}
+    </div>
+  );
+};
+
+export default PatientDashboard;
