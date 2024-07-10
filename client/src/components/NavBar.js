@@ -1,53 +1,38 @@
-import React,{useContext} from "react";
-import {Link} from 'react-router-dom';
-import {UserContext} from '../contexts/UserContext'
 
-const NavBar=()=>{
-    const {user,logout}=useContext(UserContext);
+import {NavLink} from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHouseMedical} from "@fortawesome/free-solid-svg-icons";
 
-    const renderLinks=()=>{
-        if(user.role === 'main_admin'){
-            return(
-                <>
-                <Link to='/admin/requests'>Approve Requests</Link>
-                <Link to="/admin/doctors">Manage Doctors</Link>
-                <Link to="/admin/patients">Manage Patients</Link>
-                </>
-            );
-        }
-        if (user.role === 'doctor'){
-            return (
-                <>
-                <Link to="/doctor/appointments">Appointments</Link>
-                <Link to="/doctor/profile">Profile</Link>
-                </>
-            );
-        }
-        if (user.role === 'patient'){
-            return(
-                <>
-                <Link to="/patient/appointments">Appointments</Link>
-                <Link to="/patient/profile">Profile</Link>
-                </>
-            );
-        }
-         return (
-            <>
-                <Link to="/login">Login</Link>
-                <Link to="/register/patient">Register as Patient</Link>
-                <Link to="/register/doctor">Register as Doctor</Link>
-            </>
-        );
-    };
+import '../styles/Nav.css';
 
-    return (
-        <nav>
-            <Link to="/">Home</Link>
-            {renderLinks()}
-            {user && <button onClick={logout}>Logout</button>}
-        </nav>
-    );
-};
 
-export default NavBar;
+function NavBar(){
+    return(
+   <nav className="nav">
+    <div className="logo">
+    <FontAwesomeIcon icon={faHouseMedical} size="lg" />
+        <h1>MediCare+</h1>
+    </div>
+    <ul>
+        <li>
+            <NavLink to="/">Home</NavLink>
+        </li>
+        <li>
+            <NavLink to="./patient-dashboard">Patient</NavLink>
+        </li>
+        <li>
+            <NavLink to='./doctor-dashboard'>Doctor</NavLink>
+        </li>
+        <li>
+            <NavLink to="./admin-dashboard"> Admin</NavLink>
+        </li>
+        <li>
+            <NavLink to="./logout">Logout</NavLink>
+        </li>
 
+    </ul>
+    </nav>
+    )
+}
+
+export default NavBar

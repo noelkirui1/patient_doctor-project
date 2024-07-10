@@ -9,7 +9,7 @@ const Appointments = () => {
 
     // Fetch appointments from the backend
     useEffect(() => {
-        fetch('http://localhost:5000/appointments', {
+        fetch('http://localhost:5555/appointments', {
             headers: {
                 'Authorization': `Bearer ${user.token}`,
             },
@@ -35,7 +35,7 @@ const Appointments = () => {
             date: '',
         },
         onSubmit: (values, { resetForm }) => {
-            fetch('http://localhost:3000/appointments', {
+            fetch('http://localhost:5555/appointments', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
