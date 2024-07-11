@@ -1,41 +1,64 @@
-/* Center the entire application content */
-.App {
-  text-align: center;
-  min-height: 100vh; /* Adjust as needed for full viewport height */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+/* App.css */
+
+/* Global styles */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa; /* Light grey background */
 }
 
-/* Header styles */
-.App-header {
-  background-color: #282c34;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.dashboard {
+  background-color: #ffffff; /* White dashboard background */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+select {
   width: 100%;
-  display: flex;
-  justify-content: space-between; /* Push items to opposite ends */
-  padding: 10px 20px; /* Add padding for spacing */
-  align-items: center; /* Center items vertically */
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-/* Navigation styles */
-.App-header nav {
-  display: flex;
-  gap: 20px; /* Adjust the gap between nav items */
+input[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-/* Link styles */
-.App-link {
-  color: #61dafb;
-  text-decoration: none; /* Ensure links have no underline */
-}
-
-/* Hover styles for links */
-.App-link:hover {
-  text-decoration: underline; /* Underline on hover */
-}
-
-/* Push all links to the right */
-.App-header nav {
-  margin-left: auto;
+input[type="submit"]:hover {
+  background-color: #45a049;
 }
